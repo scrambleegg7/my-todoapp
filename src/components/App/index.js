@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React  from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navigation from '../Navigation';
@@ -13,46 +13,17 @@ import AdminPage from '../Admin';
 import * as ROUTES from '../../constants/routes';
 
 import { withFirebase } from '../Firebase';
-import { AuthUserContext } from '../Session';
- 
-class App extends Component {
+import { AuthUserContext, withAuthentication } from '../Session';
+import Home from '../Home';
 
-    constructor(props) {
-        super(props);
+const App = () => (
+    <div>
+        <h1>App Page</h1>
+        <Navigation />        
+    </div>
+);
 
-        this.state = {
-            authUser : null,
-        };
-    }
-
-    componentDidMount() {
-        this.listner = 
-        this.props.firebase.auth.onAuthStateChanged(
-            authUser => {
-                authUser ?
-                this.setState({ authUser }) :
-                this.setState({ authUser : null });
-            },
-        );
-    }
-
-    componentWillUnmount() {
-        this.listner();
-    }
-
-    render() {
-        return (
-            <AuthUserContext.Provider value={this.state.authUser}>
-                <Router>
-                    <div>
-                        <Navigation />
-                        <hr />
-                    </div>
-                </Router>
-            </AuthUserContext.Provider>
-        )
-    }
-};
-
+export default withAuthentication(App);
 //export default App;
-export default withFirebase(App);
+
+

@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
-//import { SignUpForm } from '../../../../react-firebase-authentication/src/components/SignUp';
 
 const SignUpPage = () => (
     <div>
@@ -11,8 +10,6 @@ const SignUpPage = () => (
         <SignUpForm />
     </div>
 )
-
-
 
 const INITIAL_STATE = {
     username : '',
